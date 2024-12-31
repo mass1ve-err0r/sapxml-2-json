@@ -1,0 +1,12 @@
+#!/bin/bash
+# Auto-Build x86_64 with debug symbol table (NASM)
+# Saadat M. Baig (me@saadat.dev) | 11.10.2019
+
+echo Building sapxml-asm
+nasm -f elf64 -F dwarf -g src/entrypoint.s
+ld -static -o sapxml-asm src/entrypoint.o
+rm src/entrypoint.o
+if [ $? -eq 0 ];
+    then
+    echo Done building \& linking sapxml-asm, launch with ./sapxml-asm
+fi
